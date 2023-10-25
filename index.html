@@ -1,11 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>计算数据的平均数</title>
+    <script src="./cy.js"></script>
 </head>
+<style type="text/css">
+    body {
+        color: #333;
+    }
+
+    textarea {
+        font-size: 23px;
+        color: #A976E8;
+        font-weight: bold;
+    }
+
+    textarea::placeholder {  
+        color: #999999;  
+    } 
+
+    #result {
+        font-size: 24px;
+        line-height: 50px;
+    }
+
+    .tip {
+        color: #5F8E4B;
+        font-size: 18px;
+    }
+
+    .desc {
+        color: #999999;
+        font-size: 20px;
+    }
+
+    .content {
+        color: #A976E8;
+    }
+
+    .sure_btn{
+        width: 100px;
+        height: 50px;
+    }
+</style>
+
 <body>
-    <h1>计算数据的平均数</h1>
+    <!-- <h1>计算数据的平均数</h1> -->
+    <div class="tip">
+        <b>规则说明:</b><br />
+        1. 以/分割的数据, 目前不支持多个/分割的数据; <br />
+        2. 如果为单个数字, 则认定此数据为第二组的数据, 最后分别计算第一组和第二组的平均数; <br />
+        3. 无数据个数限制; <br />
+        4. 把数据粘贴到输入框后可直接"回车"或者点击"开始计算"按钮计算平均值; <br />
+        5. 结果值直接拷贝到粘贴板, 无需手动拷贝, 界面上的结果值只用作显示; <br />
+        6. 输入值的收尾空格和换行已处理, 不需要手动再次处理; <br />
+    </div>
+    <br />
+    <br />
+    <textarea name="origin_str" id="origin_str" cols="80" rows="3"
+        placeholder="请输入原始值"></textarea>
+    <button type="button" onclick="comput();" class="sure_btn"> 开始计算 </button>
+    <div id="result">
+        <!-- 结果展示 -->
+    </div>
+
+    <script type="text/javascript">
+        document.getElementById('origin_str').addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                // 这里编写你的逻辑  
+                // console.log('回车键被按下');  
+                event.preventDefault();
+
+                /// 开始计算
+                comput();
+            }
+        });
+        function comput() {
+            var textArea = document.getElementById("origin_str");
+            console.log(textArea.value);
+
+            cy(textArea.value);
+        }
+    </script>
 </body>
+
 </html>
